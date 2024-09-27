@@ -1,7 +1,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import { Item } from '@/types/models'
 import { Head } from '@inertiajs/react'
 
-export default function Dashboard() {
+export default function Dashboard({ items }: { items?: Item[] }) {
   return (
     <AuthenticatedLayout
       header={
@@ -19,6 +20,16 @@ export default function Dashboard() {
                             You&lsquo;re logged in!
             </div>
           </div>
+
+          {items?.map((item) => (
+            <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg" key={item.name}>
+              <div className="p-6 text-gray-900">
+                {item.name}
+              </div>
+            </div>
+          ))}
+
+          
         </div>
       </div>
     </AuthenticatedLayout>
